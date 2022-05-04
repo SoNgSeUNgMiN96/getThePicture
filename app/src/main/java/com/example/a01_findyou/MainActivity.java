@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent (getApplicationContext(), SignUpActivity.class);
                 startActivity(intent);
+                //  SignUpActivity가 다크모드로 되는거 수정. 그리고 등록 에러 뜸
             }
         });
     }
