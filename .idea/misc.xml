@@ -3,20 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.252" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/drawable/ic_baseline_arrow_right_alt_24.xml" value="0.252" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.252" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/drawable/ic_baseline_phone_android_24.xml" value="0.252" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/drawable/ic_baseline_vpn_key_24.xml" value="0.252" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/drawable/ic_launcher_background.xml" value="0.252" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/drawable/radius.xml" value="0.252" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/drawable/shadow.xml" value="0.1" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/layout/activity_detect.xml" value="0.264" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/layout/activity_findpw.xml" value="0.2609375" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/layout/activity_login.xml" value="0.2609375" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/layout/activity_main.xml" value="0.2609375" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/layout/activity_popup.xml" value="0.1" />
-        <entry key="..\:/AndroidFile/getThePicture-chae214/app/src/main/res/layout/activity_signin.xml" value="0.2609375" />
         <entry key="..\:/Users/ssoha/AndroidStudioProjects/getthepicture_2/app/src/main/res/drawable/ic_baseline_arrow_right_alt_24.xml" value="0.1" />
         <entry key="..\:/Users/ssoha/AndroidStudioProjects/getthepicture_2/app/src/main/res/drawable/radius.xml" value="0.1" />
         <entry key="..\:/Users/ssoha/AndroidStudioProjects/getthepicture_2/app/src/main/res/layout/activity_findpw.xml" value="0.12132725430597771" />
