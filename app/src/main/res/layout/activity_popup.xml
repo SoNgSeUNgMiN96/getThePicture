@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="70dp">
+
+        <EditText
+            android:id="@+id/popup_name"
+            android:layout_width="330dp"
+            android:layout_height="50dp"
+            android:hint="이름을 입력하세요."
+            android:textColorHint="@color/white"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:background="@drawable/radius"
+            android:backgroundTint="#C4C4C4"
+            android:textSize="18dp"
+
+            android:layout_marginBottom="40dp"
+            android:drawablePadding="10dp"/>
+
+        <Button
+            android:layout_width="330dp"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:backgroundTint="#E5E5E5"
+            android:background="@drawable/radius"
+            android:hint="image"
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/radius"
+            android:backgroundTint="#6F6F6F"
+            android:textColor="@color/white"
+            android:text="등록"
+            android:textSize="15dp"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radius"
+            android:backgroundTint="#6F6F6F"
+            android:textColor="@color/white"
+            android:text="취소"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
