@@ -5,8 +5,11 @@
       <map>
         <entry key="..\:/Users/ssoha/AndroidStudioProjects/getthepicture_2/app/src/main/res/drawable/ic_baseline_arrow_right_alt_24.xml" value="0.1" />
         <entry key="..\:/Users/ssoha/AndroidStudioProjects/getthepicture_2/app/src/main/res/drawable/radius.xml" value="0.1" />
+        <entry key="..\:/Users/ssoha/AndroidStudioProjects/getthepicture_2/app/src/main/res/layout/activity_detect.xml" value="0.15579710144927536" />
         <entry key="..\:/Users/ssoha/AndroidStudioProjects/getthepicture_2/app/src/main/res/layout/activity_findpw.xml" value="0.12132725430597771" />
         <entry key="..\:/Users/ssoha/AndroidStudioProjects/getthepicture_2/app/src/main/res/layout/activity_login.xml" value="0.10190217391304347" />
+        <entry key="..\:/Users/ssoha/AndroidStudioProjects/getthepicture_2/app/src/main/res/layout/activity_photo.xml" value="0.15489130434782608" />
+        <entry key="..\:/Users/ssoha/AndroidStudioProjects/getthepicture_2/app/src/main/res/layout/activity_popup.xml" value="0.10233029381965553" />
         <entry key="..\:/Users/ssoha/AndroidStudioProjects/getthepicture_2/app/src/main/res/layout/activity_signin.xml" value="0.1" />
       </map>
     </option>

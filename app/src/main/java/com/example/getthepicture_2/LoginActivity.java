@@ -11,18 +11,15 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Button logforgot= (Button) findViewById(R.id.login_forgot);
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
-
-      /*  logforgot.setOnClickListener(new View.OnClickListener(){
+        Button forgotbtn=(Button) findViewById(R.id.login_forgot);
+        forgotbtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(LoginActivity.this,FindpwActivity.class);
                 startActivity((intent));
             }
-        });*/
+        });
     }
-
 }
