@@ -21,6 +21,7 @@
         <activity android:name=".SigninActivity"/>
         <activity android:name=".LoginActivity"/>
         <activity android:name=".FindpwActivity"/>
+        <activity android:name="DetectActivity"/>
     </application>
 
 </manifest>

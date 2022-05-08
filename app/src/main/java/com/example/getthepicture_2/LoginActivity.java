@@ -13,6 +13,7 @@ public class LoginActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         Button logforgot= (Button) findViewById(R.id.login_forgot);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
 
       /*  logforgot.setOnClickListener(new View.OnClickListener(){
