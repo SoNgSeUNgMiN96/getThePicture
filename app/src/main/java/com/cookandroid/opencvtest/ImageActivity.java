@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Time;
 
 
 public class ImageActivity extends AppCompatActivity {
@@ -42,33 +44,22 @@ public class ImageActivity extends AppCompatActivity {
     private static final int REQ_CODE_SELECT_IMAGE = 100;
     private Bitmap mInputImage;
     private Bitmap mOriginalImage;
+    private Bitmap mDesImage;
     private ImageView mImageView;
     private ImageView mEdgeImageView;
     private ImageView pickImageView;
+    private TextView matchText;
     private boolean mIsOpenCVReady = false;
 
     public native void detectEdgeJNI(long inputImage, long outputImage, int th1, int th2);
+    public native String orbFeatureJNI(long inputImage, long outputImage);
+    public native String orbFeatureJNI2(long inputImage, long outputImage);
 
     static {
         System.loadLibrary("opencv_java4");
         System.loadLibrary("native-lib");
     }
 
-    public void detectEdge() {
-        /*
-        Mat src = new Mat();
-        Utils.bitmapToMat(mInputImage, src);
-        Mat edge = new Mat();
-        Imgproc.Canny(src, edge, 50, 150);
-        Utils.matToBitmap(edge, mInputImage);
-        Toast myToast = Toast.makeText(this.getApplicationContext(), "여기가 언제 실행되는 detectEdge",Toast.LENGTH_LONG);
-        myToast.show();
-        src.release();
-        edge.release();
-        mEdgeImageView.setImageBitmap(mInputImage);
-        */
-
-    }
 
     public void detectEdgeUsingJNI() {
         if (!mIsOpenCVReady) {
@@ -83,6 +74,20 @@ public class ImageActivity extends AppCompatActivity {
         mEdgeImageView.setImageBitmap(mInputImage);
     }
 
+    public void orbFeatureUsingJNI() {
+        if (!mIsOpenCVReady) {
+            return;
+        }
+        Mat src = new Mat();
+        Utils.bitmapToMat(mInputImage, src);
+        Mat dst = new Mat();
+        Utils.bitmapToMat(mDesImage, dst);
+
+        String a = orbFeatureJNI2(src.getNativeObjAddr(), dst.getNativeObjAddr());
+        matchText.setText(a);
+        Utils.matToBitmap(dst, mDesImage);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +96,7 @@ public class ImageActivity extends AppCompatActivity {
         mImageView = findViewById(R.id.origin_iv);
         mEdgeImageView = findViewById(R.id.edge_iv);
         pickImageView = findViewById(R.id.pivk_iv);
+        matchText = findViewById(R.id.matchText);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -133,8 +139,10 @@ public class ImageActivity extends AppCompatActivity {
             }
         }else if(requestCode ==0 && resultCode ==RESULT_OK){    //카메라로 찍어온것.
             Bundle extras = data.getExtras();
+            mDesImage =  (Bitmap) extras.get("data");
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            pickImageView.setImageBitmap(imageBitmap);
+            pickImageView.setImageBitmap(mDesImage);
+            orbFeatureUsingJNI();
             //saveBitmapFile(imageBitmap, "sampleImg"); //저장은 주석처리.
         }
     }

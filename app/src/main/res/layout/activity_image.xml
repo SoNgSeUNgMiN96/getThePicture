@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onButtonClicked"
-            android:text="Load Image"/>
+            android:text="Load src Image"/>
 
 
         <Button
@@ -48,6 +48,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/matchText"/>
 
             <ImageView
                 android:id="@+id/edge_iv"
