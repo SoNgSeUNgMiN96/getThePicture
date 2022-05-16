@@ -22,34 +22,61 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/find_phone"
+            android:id="@+id/pw_findphone"
             android:layout_width="330dp"
             android:layout_height="50dp"
             android:hint="휴대폰 번호를 입력하세요."
-            android:layout_gravity="center"
             android:background="@drawable/radius"
             android:backgroundTint="#c0c0c0"
             android:textSize="25dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginBottom="20dp"
             android:drawablePadding="10dp"
             android:drawableLeft="@drawable/ic_baseline_phone_android_24"
             android:drawableStart="@drawable/ic_baseline_phone_android_24"/>
-        <EditText
-            android:id="@+id/find_pw"
-            android:layout_width="330dp"
+        <Button
+            android:id="@+id/pw_get_key"
+            android:layout_width="60dp"
             android:layout_height="50dp"
-            android:hint="비밀번호를 입력하세요."
+            android:text="전송"
+            android:background="@drawable/radius"
+            android:backgroundTint="#696969"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            />
+
+    </LinearLayout>
+    <EditText
+        android:id="@+id/pw_find_pw"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:hint="인증번호를 입력하세요."
+        android:layout_gravity="center"
+        android:background="@drawable/radius"
+        android:backgroundTint="#808080"
+        android:textSize="25dp"
+        android:layout_marginBottom="20dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
+        android:drawableStart="@drawable/ic_baseline_vpn_key_24"/>
+
+        <EditText
+            android:id="@+id/pw_findmail"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:hint="이메일을 입력하세요."
             android:layout_gravity="center"
             android:background="@drawable/radius"
             android:backgroundTint="#808080"
             android:textSize="25dp"
             android:layout_marginBottom="20dp"
             android:drawablePadding="10dp"
-            android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
-            android:drawableStart="@drawable/ic_baseline_vpn_key_24"/>
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:drawableStart="@drawable/ic_baseline_email_24"/>
+
 
         <Button
             android:id="@+id/find_sub"
@@ -63,5 +90,5 @@
             android:textSize="25dp"
             android:drawableLeft="@drawable/ic_baseline_arrow_right_alt_24"
             android:drawableStart="@drawable/ic_baseline_arrow_right_alt_24"/>
-    </LinearLayout>
+
 </LinearLayout>
