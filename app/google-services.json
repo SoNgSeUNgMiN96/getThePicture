@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "136491989021",
+    "project_id": "findu-20945",
+    "storage_bucket": "findu-20945.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:136491989021:android:073f18d8f0fee453f0eef4",
+        "android_client_info": {
+          "package_name": "com.example.cameraexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "136491989021-cbmt5rfte1e6p8sdd531dh7p45oeum5l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAunRgUfmk-9wAiDMQT8RXE7nOL5jytJww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "136491989021-cbmt5rfte1e6p8sdd531dh7p45oeum5l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,10 +10,14 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+
+import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -44,10 +48,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         // 사진 저장 후 미디어 스캐닝을 돌려줘야 갤러리에 반영됨.
         mMediaScanner = MediaScanner.getInstance(getApplicationContext());
-
 
         // 권한 체크
         TedPermission.with(getApplicationContext())
@@ -57,8 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
                 .check();
 
-
-        findViewById(R.id.btn_capture).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.iv_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -79,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 
@@ -118,47 +125,53 @@ public class MainActivity extends AppCompatActivity {
                 exifDegree = 0;
             }
 
-            String result = "";
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HHmmss", Locale.getDefault() );
-            Date             curDate   = new Date(System.currentTimeMillis());
-            String           filename  = formatter.format(curDate);
-
-            String           strFolderName = Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES) + File.separator + "PICTURE" + File.separator;
-            File file = new File(strFolderName);
-            if( !file.exists() )
-                file.mkdirs();
-
-            File f = new File(strFolderName + "/" + filename + ".png");
-            result = f.getPath();
-
-            FileOutputStream fOut = null;
-            try {
-                fOut = new FileOutputStream(f);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                result = "Save Error fOut";
-            }
-
-            // 비트맵 사진 폴더 경로에 저장
-            rotate(bitmap,exifDegree).compress(Bitmap.CompressFormat.PNG, 70, fOut);
-
-            try {
-                fOut.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                fOut.close();
-                // 방금 저장된 사진을 갤러리 폴더 반영 및 최신화
-                mMediaScanner.mediaScanning(strFolderName + "/" + filename + ".png");
-            } catch (IOException e) {
-                e.printStackTrace();
-                result = "File close Error";
-            }
-
             // 이미지 뷰에 비트맵을 set하여 이미지 표현
-            ((ImageView) findViewById(R.id.iv_result)).setImageBitmap(rotate(bitmap,exifDegree));
+            ((ImageView) findViewById(R.id.iv_image)).setImageBitmap(rotate(bitmap,exifDegree));
 
+            findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    EditText editText = findViewById(R.id.popup_name);
+
+                    String result = "";
+                    String filename  = editText.getText().toString();
+
+                    String strFolderName = Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES) + File.separator + "FINDU" + File.separator;
+                    File file = new File(strFolderName);
+                    if( !file.exists() )
+                        file.mkdirs();
+
+                    File f = new File(strFolderName + "/" + filename + ".jpg");
+                    result = f.getPath();
+
+                    FileOutputStream fOut = null;
+                    try {
+                        fOut = new FileOutputStream(f);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        result = "Save Error fOut";
+                    }
+
+                    // 비트맵 사진 폴더 경로에 저장
+                    rotate(bitmap,exifDegree).compress(Bitmap.CompressFormat.JPEG, 70, fOut);
+
+                    try {
+                        fOut.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        fOut.close();
+                        // 방금 저장된 사진을 갤러리 폴더 반영 및 최신화
+                        mMediaScanner.mediaScanning(strFolderName + "/" + filename + ".jpg");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        result = "File close Error";
+                    }
+
+                    Toast.makeText(getApplicationContext(), "등록되었습니다.", Toast.LENGTH_SHORT).show();
+                }
+            });
 
         }
     }
@@ -191,6 +204,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "권한이 거부됨",Toast.LENGTH_SHORT).show();
         }
     };
-
 
 }
