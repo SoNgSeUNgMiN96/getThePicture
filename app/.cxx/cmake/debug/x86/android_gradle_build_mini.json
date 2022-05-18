@@ -1,0 +1,19 @@
+{
+  "buildFiles": [
+    "C:\\ANDROID\\ndk\\21.4.7075529\\build\\cmake\\platforms.cmake",
+    "C:\\Users\\seungmin\\Desktop\\coding\\getThePicture\\getThePicture\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\ANDROID\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake"
+  ],
+  "cleanCommands": [
+    "C:\\ANDROID\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\seungmin\\Desktop\\coding\\getThePicture\\getThePicture\\app\\.cxx\\cmake\\debug\\x86\" clean"
+  ],
+  "buildTargetsCommand": "C:\\ANDROID\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\seungmin\\Desktop\\coding\\getThePicture\\getThePicture\\app\\.cxx\\cmake\\debug\\x86\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "native-lib-Debug-x86": {
+      "artifactName": "native-lib",
+      "buildCommand": "C:\\ANDROID\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\seungmin\\Desktop\\coding\\getThePicture\\getThePicture\\app\\.cxx\\cmake\\debug\\x86\" native-lib",
+      "abi": "x86",
+      "output": "C:\\Users\\seungmin\\Desktop\\coding\\getThePicture\\getThePicture\\app\\build\\intermediates\\cmake\\debug\\obj\\x86\\libnative-lib.so"
+    }
+  }
+}

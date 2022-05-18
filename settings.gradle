@@ -1,2 +1,2 @@
-include ':app'
-rootProject.name = "01_findyou"
+include ':app' ,':tensorflow-lite'
+include ':opencv'

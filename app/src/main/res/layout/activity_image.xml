@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="70dp">
+
+
+        <ImageView
+            android:id="@+id/pivk_iv"
+            android:layout_width="330dp"
+            android:layout_height="400dp"
+            android:layout_gravity="center"
+            android:backgroundTint="#E5E5E5"
+            android:background="@drawable/radius"
+            android:hint="image"
+            android:textSize="18dp"
+            android:onClick="onPickButtonClicked"
+            />
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:text="결과가 나옵니다."
+            android:id="@+id/matchText"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radius"
+            android:backgroundTint="#6F6F6F"
+            android:textColor="#FFFFFF"
+            android:text="취소"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+<!--
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/load_image_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onButtonClicked"
+            android:text="Load src Image"/>
+
+
+        <Button
+            android:id="@+id/pick_image_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onPickButtonClicked"
+            android:text="pick Image"/>
+
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/origin_iv"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginTop="20dp"/>
+
+            <ImageView
+                android:id="@+id/pivk_iv"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/matchText"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
+-->
+
+
