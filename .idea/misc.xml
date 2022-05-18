@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/seungmin/Desktop/coding/getThePicture/getThePicture/app/src/main/res/layout/activity_detect.xml" value="0.1" />
+        <entry key="..\:/Users/seungmin/Desktop/coding/getThePicture/getThePicture/app/src/main/res/layout/activity_detectmode.xml" value="0.15" />
+        <entry key="..\:/Users/seungmin/Desktop/coding/getThePicture/getThePicture/app/src/main/res/layout/activity_img_save.xml" value="0.40260416666666665" />
+        <entry key="..\:/Users/seungmin/Desktop/coding/getThePicture/getThePicture/app/src/main/res/layout/tfe_od_activity_camera.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/seungmin/Desktop/coding/getThePicture/getThePicture/app/src/main/res/layout/tfe_od_camera_connection_fragment_tracking.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/seungmin/Desktop/coding/getThePicture/getThePicture/app/src/main/res/layout/tfe_od_layout_bottom_sheet.xml" value="0.358695652173913" />
         <entry key="..\:/Users/seungmin/Desktop/coding/tensorflow-yolov4-tflite/android/app/src/main/res/drawable-hdpi/ic_baseline_phone_android_24.xml" value="0.159" />
         <entry key="..\:/Users/seungmin/Desktop/coding/tensorflow-yolov4-tflite/android/app/src/main/res/drawable-hdpi/radius.xml" value="0.1" />
         <entry key="..\:/Users/seungmin/Desktop/coding/tensorflow-yolov4-tflite/android/app/src/main/res/drawable-hdpi/shadow.xml" value="0.1" />

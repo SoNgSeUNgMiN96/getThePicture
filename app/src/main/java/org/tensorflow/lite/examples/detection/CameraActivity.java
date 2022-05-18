@@ -16,6 +16,8 @@
 
 package org.tensorflow.lite.examples.detection;
 
+import static android.speech.tts.TextToSpeech.ERROR;
+
 import android.Manifest;
 import android.app.Fragment;
 import android.content.Context;
@@ -38,6 +40,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+
+import android.speech.tts.TextToSpeech;
 import android.util.Size;
 import android.view.Surface;
 import android.view.View;
@@ -50,8 +54,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import java.nio.ByteBuffer;
+import java.util.Locale;
+
 import org.tensorflow.lite.examples.detection.env.ImageUtils;
 import org.tensorflow.lite.examples.detection.env.Logger;
+import android.speech.tts.TextToSpeech;
+import static android.speech.tts.TextToSpeech.ERROR;
 
 public abstract class CameraActivity extends AppCompatActivity
     implements OnImageAvailableListener,
@@ -59,8 +67,9 @@ public abstract class CameraActivity extends AppCompatActivity
         CompoundButton.OnCheckedChangeListener,
         View.OnClickListener {
   private static final Logger LOGGER = new Logger();
-
+  private TextToSpeech tts;              // TTS 변수 선언
   private static final int PERMISSIONS_REQUEST = 1;
+  private TextView textTest;
 
   private static final String PERMISSION_CAMERA = Manifest.permission.CAMERA;
   protected int previewWidth = 0;
@@ -111,6 +120,22 @@ public abstract class CameraActivity extends AppCompatActivity
     gestureLayout = findViewById(R.id.gesture_layout);
     sheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
     bottomSheetArrowImageView = findViewById(R.id.bottom_sheet_arrow);
+    textTest = findViewById(R.id.textTest);
+
+    tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+      @Override
+      public void onInit(int status) {
+        if(status != ERROR) {
+          // 언어를 선택한다.
+          tts.setLanguage(Locale.KOREAN);
+        }
+      }
+    });
+    tts.speak("여기는 어디일까요 프로세스 이미지일까요",TextToSpeech.QUEUE_FLUSH, null);
+    Toast.makeText(getApplicationContext(),"좀 나와봐라",Toast.LENGTH_LONG);
+
+    textTest.setText("여기선 바뀌는가");
+    tts.speak(textTest.getText().toString(),TextToSpeech.QUEUE_FLUSH, null);
 
     ViewTreeObserver vto = gestureLayout.getViewTreeObserver();
     vto.addOnGlobalLayoutListener(
@@ -134,6 +159,11 @@ public abstract class CameraActivity extends AppCompatActivity
         new BottomSheetBehavior.BottomSheetCallback() {
           @Override
           public void onStateChanged(@NonNull View bottomSheet, int newState) {
+
+            textTest.setText(textTest.getText()+"지점 2");
+            tts.speak(textTest.getText().toString(),TextToSpeech.QUEUE_FLUSH, null);
+
+
             switch (newState) {
               case BottomSheetBehavior.STATE_HIDDEN:
                 break;
@@ -185,6 +215,7 @@ public abstract class CameraActivity extends AppCompatActivity
   /** Callback for android.hardware.Camera API */
   @Override
   public void onPreviewFrame(final byte[] bytes, final Camera camera) {
+
     if (isProcessingFrame) {
       LOGGER.w("Dropping frame!");
       return;

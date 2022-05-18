@@ -27,6 +27,8 @@ import android.graphics.RectF;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.util.TypedValue;
+import android.widget.Toast;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -93,9 +95,10 @@ public class MultiBoxTracker {
     this.sensorOrientation = sensorOrientation;
   }
 
-  public synchronized void drawDebug(final Canvas canvas) {
+  public synchronized void drawDebug(final Canvas canvas, Context context) {
     final Paint textPaint = new Paint();
     textPaint.setColor(Color.WHITE);
+
     textPaint.setTextSize(60.0f);
 
     final Paint boxPaint = new Paint();
@@ -107,7 +110,7 @@ public class MultiBoxTracker {
       final RectF rect = detection.second;
       canvas.drawRect(rect, boxPaint);
       canvas.drawText("" + detection.first, rect.left, rect.top, textPaint);
-      borderedText.drawText(canvas, rect.centerX(), rect.centerY(), "" + detection.first);
+      borderedText.drawText(canvas, rect.centerX(), rect.centerY(), "" + detection.first, context);
     }
   }
 
@@ -120,7 +123,7 @@ public class MultiBoxTracker {
     return frameToCanvasMatrix;
   }
 
-  public synchronized void draw(final Canvas canvas) {
+  public synchronized String draw(final Canvas canvas,String text,Context context) {
     final boolean rotated = sensorOrientation % 180 == 90;
     final float multiplier =
         Math.min(
@@ -149,9 +152,13 @@ public class MultiBoxTracker {
               : String.format("%.2f", (100 * recognition.detectionConfidence));
       //            borderedText.drawText(canvas, trackedPos.left + cornerSize, trackedPos.top,
       // labelString);
+      text += recognition.title+" ";
+
       borderedText.drawText(
-          canvas, trackedPos.left + cornerSize, trackedPos.top, labelString + "%", boxPaint);
+          canvas, trackedPos.left + cornerSize, trackedPos.top, labelString + "%", boxPaint, context);
+
     }
+    return text;
   }
 
   private void processResults(final List<Recognition> results) {

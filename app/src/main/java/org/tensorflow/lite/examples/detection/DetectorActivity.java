@@ -26,15 +26,23 @@ import android.graphics.Paint.Style;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.media.ImageReader.OnImageAvailableListener;
+import static android.speech.tts.TextToSpeech.ERROR;
+
+import android.os.Build;
+import android.speech.tts.TextToSpeech;
 import android.os.SystemClock;
 import android.util.Log;
 import android.util.Size;
 import android.util.TypedValue;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+
 import java.io.IOException;
+import java.time.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import org.tensorflow.lite.examples.detection.customview.OverlayView;
 import org.tensorflow.lite.examples.detection.customview.OverlayView.DrawCallback;
@@ -49,10 +57,12 @@ import org.tensorflow.lite.examples.detection.tracking.MultiBoxTracker;
  * An activity that uses a TensorFlowMultiBoxDetector and ObjectTracker to detect and then track
  * objects.
  */
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class DetectorActivity extends CameraActivity implements OnImageAvailableListener {
     private static final Logger LOGGER = new Logger();
 
     private static final int TF_OD_API_INPUT_SIZE = 416;
+    private TextToSpeech tts;              // TTS 변수 선언
     private static final boolean TF_OD_API_IS_QUANTIZED = false;
     private static final String TF_OD_API_MODEL_FILE = "yolov4-416-fp32.tflite";
     private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/coco.txt";
@@ -64,6 +74,9 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
     private static final float TEXT_SIZE_DIP = 10;
     OverlayView trackingOverlay;
     private Integer sensorOrientation;
+
+    LocalTime  before = LocalTime.now();
+
 
     private Classifier detector;
 
@@ -95,7 +108,24 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
         int cropSize = TF_OD_API_INPUT_SIZE;
 
+        // TTS를 생성하고 OnInitListener로 초기화 한다.
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != ERROR) {
+                    // 언어를 선택한다.
+                    tts.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
+
+
         try {
+
+
+
+
+
             detector =
                     YoloV4Classifier.create(
                             getAssets(),
@@ -143,10 +173,26 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                 new DrawCallback() {
                     @Override
                     public void drawCallback(final Canvas canvas) {
-                        tracker.draw(canvas);
+
+
+                        String text = "";
+                        text += tracker.draw(canvas,text,getApplicationContext());
                         if (isDebug()) {
-                            tracker.drawDebug(canvas);
+                            tracker.drawDebug(canvas, getApplicationContext());
                         }
+
+
+
+                        LocalTime now = LocalTime.now();        //현재시각
+                        Duration d1 = Duration.between(before,now); //마지막 동기화 시각과의 시간차이
+
+                        if(text.length()>0&&(d1.getSeconds()>3)){       //이게 콜백함수가 연속되어서 3초에 한번만 읽도록 설정.
+                            before = now;
+                            tts.speak("화면에 "+text+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                        }
+
+
+
                     }
                 });
 
@@ -155,6 +201,14 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
     @Override
     protected void processImage() {
+        // TTS를 생성하고 OnInitListener로 초기화 한다.
+
+
+
+        Toast.makeText(getApplicationContext(),"나오나",Toast.LENGTH_SHORT);
+
+
+
         ++timestamp;
         final long currTimestamp = timestamp;
         trackingOverlay.postInvalidate();

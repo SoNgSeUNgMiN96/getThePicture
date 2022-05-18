@@ -15,19 +15,27 @@ limitations under the License.
 
 package org.tensorflow.lite.examples.detection.env;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
+import android.speech.tts.TextToSpeech;
+
+import static android.speech.tts.TextToSpeech.ERROR;
+
 import android.graphics.Typeface;
+
+import java.util.Locale;
 import java.util.Vector;
 
 /** A class that encapsulates the tedious bits of rendering legible, bordered text onto a canvas. */
 public class BorderedText {
   private final Paint interiorPaint;
   private final Paint exteriorPaint;
+  private TextToSpeech tts;              // TTS 변수 선언
 
   private final float textSize;
 
@@ -73,13 +81,28 @@ public class BorderedText {
     exteriorPaint.setTypeface(typeface);
   }
 
-  public void drawText(final Canvas canvas, final float posX, final float posY, final String text) {
+  public void drawText(final Canvas canvas, final float posX, final float posY, final String text, Context context) {
+    // TTS를 생성하고 OnInitListener로 초기화 한다.
+    tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+      @Override
+      public void onInit(int status) {
+        if(status != ERROR) {
+          // 언어를 선택한다.
+          tts.setLanguage(Locale.KOREAN);
+        }
+      }
+    });
+    tts.speak(text,TextToSpeech.QUEUE_FLUSH, null);
+
     canvas.drawText(text, posX, posY, exteriorPaint);
     canvas.drawText(text, posX, posY, interiorPaint);
   }
 
   public void drawText(
-      final Canvas canvas, final float posX, final float posY, final String text, Paint bgPaint) {
+      final Canvas canvas, final float posX, final float posY, final String text, Paint bgPaint, Context context) {
+
+
+
 
     float width = exteriorPaint.measureText(text);
     float textSize = exteriorPaint.getTextSize();
@@ -91,10 +114,10 @@ public class BorderedText {
     canvas.drawText(text, posX, (posY + textSize), interiorPaint);
   }
 
-  public void drawLines(Canvas canvas, final float posX, final float posY, Vector<String> lines) {
+  public void drawLines(Canvas canvas, final float posX, final float posY, Vector<String> lines, Context context) {
     int lineNum = 0;
     for (final String line : lines) {
-      drawText(canvas, posX, posY - getTextSize() * (lines.size() - lineNum - 1), line);
+      drawText(canvas, posX, posY - getTextSize() * (lines.size() - lineNum - 1), line, context);
       ++lineNum;
     }
   }

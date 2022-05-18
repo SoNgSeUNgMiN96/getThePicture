@@ -31,6 +31,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
+
+
+import android.speech.tts.TextToSpeech;
+import static android.speech.tts.TextToSpeech.ERROR;
+
 
 import static android.os.Environment.DIRECTORY_PICTURES;
 
@@ -42,6 +48,7 @@ public class PopupActivity extends AppCompatActivity {
     private String imageFilePath;
     private Uri photoUri;
     private Button btnCancel;
+    private TextToSpeech tts;              // TTS 변수 선언
 
     private MediaScanner mMediaScanner; // 사진 저장 시 갤러리 폴더에 바로 반영사항을 업데이트 시켜주려면 이 것이 필요하다(미디어 스캐닝)
 
@@ -53,6 +60,17 @@ public class PopupActivity extends AppCompatActivity {
         // 사진 저장 후 미디어 스캐닝을 돌려줘야 갤러리에 반영됨.
         mMediaScanner = MediaScanner.getInstance(getApplicationContext());
         btnCancel = (Button)findViewById(R.id.btn_cancel);
+
+        // TTS를 생성하고 OnInitListener로 초기화 한다.
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != ERROR) {
+                    // 언어를 선택한다.
+                    tts.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
 
         // 권한 체크
         TedPermission.with(getApplicationContext())
@@ -85,8 +103,21 @@ public class PopupActivity extends AppCompatActivity {
             }
         });
 
-        btnCancel.setOnClickListener(v-> startActivity(new Intent(PopupActivity.this, DetectMenuActivity.class)));
+        btnCancel.setOnClickListener(v-> {
+            tts.speak("취소합니다. ",TextToSpeech.QUEUE_FLUSH, null);
+            startActivity(new Intent(PopupActivity.this, DetectMenuActivity.class));
+        });
 
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // TTS 객체가 남아있다면 실행을 중지하고 메모리에서 제거한다.
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
     }
 
     private File createImageFile() throws IOException {
@@ -138,6 +169,8 @@ public class PopupActivity extends AppCompatActivity {
 
                     String result = "";
                     String filename = editText.getText().toString();
+
+                    tts.speak(filename+"사진을 저장하였습니다.",TextToSpeech.QUEUE_FLUSH, null);
 
                     String strFolderName = Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES) + File.separator + "FINDU" + File.separator;
                     File file = new File(strFolderName);

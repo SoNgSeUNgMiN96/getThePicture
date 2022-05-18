@@ -23,6 +23,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import static android.speech.tts.TextToSpeech.ERROR;
+import android.speech.tts.TextToSpeech;
+
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,6 +51,9 @@ import java.util.Locale;
 
 
 public class ImageActivity extends AppCompatActivity {
+
+    private TextToSpeech tts;              // TTS 변수 선언
+
 
     static class MatchInfo{
         double avr;
@@ -107,13 +114,29 @@ public class ImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != ERROR) {
+                    // 언어를 선택한다.
+                    tts.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
+
+
+
+
         setContentView(R.layout.activity_image);
         pickImageView = findViewById(R.id.pivk_iv);
         matchText = findViewById(R.id.matchText);
         btnCancel = findViewById(R.id.btn_cancel);
         mMediaScanner = MediaScanner.getInstance(getApplicationContext());
 
-        btnCancel.setOnClickListener(v-> startActivity(new Intent(ImageActivity.this, DetectMenuActivity.class)));
+        btnCancel.setOnClickListener(v-> {
+            tts.speak("취소합니다",TextToSpeech.QUEUE_FLUSH, null);
+            startActivity(new Intent(ImageActivity.this, DetectMenuActivity.class));
+        });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!hasPermissions(PERMISSIONS)) {
@@ -197,10 +220,10 @@ public class ImageActivity extends AppCompatActivity {
             if(matchInfos[0].minDist>90||matchInfos[0].goodMatch<4){
 
                 matchText.setText("가장 유사한 물건은 "+(resultName.split("\\.")[0])+"입니다.\n 일치율이 적습니다. \ngood = "+matchInfos[0].goodMatch+"\n min = "+matchInfos[0].minDist+"\navr = "+matchInfos[0].avr);
-
+                tts.speak(matchText.getText().toString(),TextToSpeech.QUEUE_FLUSH, null);
             }else{
                 matchText.setText("가장 유사한 물건은 "+(resultName.split("\\.")[0])+"입니다.\n 일치율이 높습니다. \ngood = "+matchInfos[0].goodMatch+"\n min = "+matchInfos[0].minDist+"\navr = "+matchInfos[0].avr);
-
+                tts.speak(matchText.getText().toString(),TextToSpeech.QUEUE_FLUSH, null);
             }
 
 
@@ -213,6 +236,11 @@ public class ImageActivity extends AppCompatActivity {
         mInputImage.recycle();
         if (mInputImage != null) {
             mInputImage = null;
+        }
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
         }
     }
 
