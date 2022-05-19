@@ -188,7 +188,6 @@ public class ImageActivity extends AppCompatActivity {
                 return;
             }
 
-
             for (File file : files) {       //파일들을 선형 탐색 한다.
                 Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
                 orbFeatureUsingJNI(myBitmap,mDesImage);

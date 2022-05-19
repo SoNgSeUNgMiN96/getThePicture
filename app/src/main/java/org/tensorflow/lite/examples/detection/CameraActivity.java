@@ -69,7 +69,6 @@ public abstract class CameraActivity extends AppCompatActivity
   private static final Logger LOGGER = new Logger();
   private TextToSpeech tts;              // TTS 변수 선언
   private static final int PERMISSIONS_REQUEST = 1;
-  private TextView textTest;
 
   private static final String PERMISSION_CAMERA = Manifest.permission.CAMERA;
   protected int previewWidth = 0;
@@ -120,7 +119,6 @@ public abstract class CameraActivity extends AppCompatActivity
     gestureLayout = findViewById(R.id.gesture_layout);
     sheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
     bottomSheetArrowImageView = findViewById(R.id.bottom_sheet_arrow);
-    textTest = findViewById(R.id.textTest);
 
     tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
       @Override
@@ -131,11 +129,6 @@ public abstract class CameraActivity extends AppCompatActivity
         }
       }
     });
-    tts.speak("여기는 어디일까요 프로세스 이미지일까요",TextToSpeech.QUEUE_FLUSH, null);
-    Toast.makeText(getApplicationContext(),"좀 나와봐라",Toast.LENGTH_LONG);
-
-    textTest.setText("여기선 바뀌는가");
-    tts.speak(textTest.getText().toString(),TextToSpeech.QUEUE_FLUSH, null);
 
     ViewTreeObserver vto = gestureLayout.getViewTreeObserver();
     vto.addOnGlobalLayoutListener(
@@ -159,9 +152,6 @@ public abstract class CameraActivity extends AppCompatActivity
         new BottomSheetBehavior.BottomSheetCallback() {
           @Override
           public void onStateChanged(@NonNull View bottomSheet, int newState) {
-
-            textTest.setText(textTest.getText()+"지점 2");
-            tts.speak(textTest.getText().toString(),TextToSpeech.QUEUE_FLUSH, null);
 
 
             switch (newState) {

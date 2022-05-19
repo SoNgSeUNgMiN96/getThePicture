@@ -20,6 +20,7 @@ import static android.speech.tts.TextToSpeech.ERROR;
 import android.speech.tts.TextToSpeech;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 
@@ -116,6 +117,30 @@ public class DetectMenuActivity extends AppCompatActivity {
 
 
     private RecognitionListener listener = new RecognitionListener() {
+
+        HashMap<String,String> labelDic = new HashMap<String,String>(){
+            {
+                put("컵","cup");     //mouse
+                put("마우스","mouse");     //keyboard
+                put("키보드","keyboard");
+                put("휴대폰","cell phone");
+                put("스마트폰","cell phone");
+                put("폰","cell phone");
+                put("시계","clock");
+                put("책","book");
+                put("키보드","keyboard");
+                put("사람","person");     //mouse
+                put("인간","person");     //mouse
+                put("개","dog");
+                put("강아지","dog");
+                put("컴퓨터","laptop");
+                put("노트북","laptop");
+                put("마우스","mouse");
+                put("가방","suitcase");
+            }
+        };
+
+
         @Override
         public void onReadyForSpeech(Bundle params) {
             Toast.makeText(getApplicationContext(),"음성인식을 시작합니다.",Toast.LENGTH_SHORT).show();
@@ -191,12 +216,36 @@ public class DetectMenuActivity extends AppCompatActivity {
 
             String result = voiceTextView.getText().toString();
 
+            Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
+
             if(result.contains("내")&&result.contains("물건")&&(result.contains("찾아")||result.contains("찾기"))){
                 tts.speak("내 물건 찾기 화면으로 이동합니다.",TextToSpeech.QUEUE_FLUSH, null);
                 startActivity(new Intent(DetectMenuActivity.this, ImageActivity.class));
-            }else if(result.contains("물건")&&(result.contains("찾아")||result.contains("찾기"))){
-                tts.speak("물건 찾기 모드로 이동합니다.",TextToSpeech.QUEUE_FLUSH, null);
-                startActivity(new Intent(DetectMenuActivity.this, DetectorActivity.class));
+            }else if((result.contains("찾아")||result.contains("찾기"))){
+
+
+                Intent detectIntent = new Intent(DetectMenuActivity.this, DetectorActivity.class);
+                try{
+                    if(result.contains("찾아"))
+                        result = result.split(" ")[0];
+                    else{
+                        result = result.split(" ")[0];
+                    }
+                    Toast.makeText(getApplicationContext(),labelDic.get(result),Toast.LENGTH_LONG).show();
+                    if(labelDic.containsKey(result)){
+                        detectIntent.putExtra("obj",labelDic.get(result));
+                        Toast.makeText(getApplicationContext(),labelDic.get(result),Toast.LENGTH_LONG).show();
+                        tts.speak(result+" 찾습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                    }else{
+                        tts.speak("해당 물건은 목록에 없어요 물건 찾기 모드로 진입합니다.",TextToSpeech.QUEUE_FLUSH, null);
+                    }
+
+                    startActivity(detectIntent);
+
+                }catch (Exception e){
+                    tts.speak("물건 찾기 모드로 진입합니다.",TextToSpeech.QUEUE_FLUSH, null);
+                    startActivity(new Intent(DetectMenuActivity.this, DetectorActivity.class));
+                }
             }else if(result.contains("메인 화면")){
                 tts.speak("메인 화면으로 이동합니다.",TextToSpeech.QUEUE_FLUSH, null);
                 startActivity(new Intent(DetectMenuActivity.this, MainActivity.class));

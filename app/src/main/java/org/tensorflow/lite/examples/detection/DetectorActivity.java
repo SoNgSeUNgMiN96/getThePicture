@@ -40,6 +40,7 @@ import androidx.annotation.RequiresApi;
 
 import java.io.IOException;
 import java.time.*;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -93,8 +94,25 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
     private Matrix cropToFrameTransform;
 
     private MultiBoxTracker tracker;
-
     private BorderedText borderedText;
+
+
+    HashMap<String,String> labelDicReverse = new HashMap<String,String>(){
+        {
+            put("cup","컵");     //mouse
+            put("mouse","마우스");     //keyboard
+            put("keyboard","키보드");
+            put("cell phone","휴대폰");
+            put("clock","시계");
+            put("book","책");
+            put("person","사람");     //mouse
+            put("dog","강아지");
+            put("laptop","컴퓨터");
+            put("suitcase","가방");
+        }
+    };
+
+
 
     @Override
     public void onPreviewSizeChosen(final Size size, final int rotation) {
@@ -108,7 +126,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
         int cropSize = TF_OD_API_INPUT_SIZE;
 
-        // TTS를 생성하고 OnInitListener로 초기화 한다.
+        // TTS를 생성하고 OnInitListener로 초기화 한다.        textToSpeach 기능.
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -121,10 +139,6 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
 
         try {
-
-
-
-
 
             detector =
                     YoloV4Classifier.create(
@@ -174,25 +188,67 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                     @Override
                     public void drawCallback(final Canvas canvas) {
 
+                        String text = "", objName, findObj,decodeObj;
+                        Double x,y;
+                        String[] objectInfo, temp;
 
-                        String text = "";
                         text += tracker.draw(canvas,text,getApplicationContext());
+
                         if (isDebug()) {
                             tracker.drawDebug(canvas, getApplicationContext());
                         }
-
-
 
                         LocalTime now = LocalTime.now();        //현재시각
                         Duration d1 = Duration.between(before,now); //마지막 동기화 시각과의 시간차이
 
                         if(text.length()>0&&(d1.getSeconds()>3)){       //이게 콜백함수가 연속되어서 3초에 한번만 읽도록 설정.
                             before = now;
-                            tts.speak("화면에 "+text+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                            objectInfo = text.split(" ");
+                            findObj = getIntent().getStringExtra("obj");
+                            Boolean success= false;
+                            decodeObj = labelDicReverse.get(findObj);
+
+                            for (int i = 0; i < objectInfo.length; i++) {
+                                temp = objectInfo[i].split("x=");
+                                objName = temp[0];
+
+                                //띄어쓰기된 물건을 찾을 때 문제
+                                Toast.makeText(getApplicationContext(),"찾을 물건 = "+findObj+"지금 물건 = "+objName,Toast.LENGTH_LONG).show();
+
+                                if(objName.equals(findObj)){
+                                    success = true;
+                                    temp = temp[1].split("y=");
+                                                                        x = Double.parseDouble(temp[0]);
+                                    y = Double.parseDouble(temp[1]);
+                                    if(x<canvas.getWidth()/3){      //좌측 영역
+                                        if(y<canvas.getHeight()/3){     //좌상단 영역
+                                            tts.speak("좌측 상단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                        }else if(y<canvas.getHeight()*2/3){ //좌중앙
+                                            tts.speak("좌측에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                        }else{      //좌하단
+                                            tts.speak("좌측 하단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                        }
+                                    }else if(x<canvas.getWidth()*2/3){      //중앙 영역
+                                        if(y<canvas.getHeight()/3){     //좌상단 영역
+                                            tts.speak("상단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                        }else if(y<canvas.getHeight()*2/3){ //좌중앙
+                                            tts.speak("현재 중앙에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                        }else{      //좌하단
+                                            tts.speak("하단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                        }
+                                    }else{
+                                        if(y<canvas.getHeight()/3){     //좌상단 영역
+                                            tts.speak("우측 상단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                        }else if(y<canvas.getHeight()*2/3){ //좌중앙
+                                            tts.speak("우측에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                        }else{      //좌하단
+                                            tts.speak("우측 하단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                        }
+                                    }
+                                }
+                            }
+                            if(!success) tts.speak("화면에 "+decodeObj+" 없습니다.",TextToSpeech.QUEUE_FLUSH, null);
                         }
-
-
-
                     }
                 });
 
