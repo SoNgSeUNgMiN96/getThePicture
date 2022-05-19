@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "333061036693",
-    "project_id": "test-f9259",
-    "storage_bucket": "test-f9259.appspot.com"
+    "project_number": "344949132910",
+    "project_id": "test0516-2a101",
+    "storage_bucket": "test0516-2a101.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:333061036693:android:fa6e60278dd658849d599c",
+        "mobilesdk_app_id": "1:344949132910:android:2f7c2090a0dcdb537ca07f",
         "android_client_info": {
-          "package_name": "com.example.a01_findyou"
+          "package_name": "com.example.getthepicture_2"
         }
       },
       "oauth_client": [
         {
-          "client_id": "333061036693-tej2jedkubn5o1lk8elqg5bq2dr7g8s2.apps.googleusercontent.com",
+          "client_id": "344949132910-qnitqpb59teurjvqbepr8f45nsi0edt6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.a01_findyou",
+            "package_name": "com.example.getthepicture_2",
             "certificate_hash": "663bfabfad9e3df7190ed3aad4df70a7ba783997"
           }
         },
         {
-          "client_id": "333061036693-m7hb8cug03v130hi7ru6l78kg6v24aac.apps.googleusercontent.com",
+          "client_id": "344949132910-uj6bahp6rqkvbccjp674u8378saejcmd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC_2JFfUmOAR-9pbbsr0IyKwrj5RttyfY4"
+          "current_key": "AIzaSyBg82ght7M0tB9-nDPk-DR8SjolpvHyO3Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "333061036693-m7hb8cug03v130hi7ru6l78kg6v24aac.apps.googleusercontent.com",
+              "client_id": "344949132910-uj6bahp6rqkvbccjp674u8378saejcmd.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

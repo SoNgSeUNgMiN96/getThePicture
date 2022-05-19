@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.a01_findyou">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -8,21 +7,23 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.01_findyou">
+        android:theme="@style/Theme.Getthepicture_2">
         <activity
-            android:name=".SignUpActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_login"
-            android:theme="@style/Theme.01_findyou.Fullscreen"></activity>
-        <activity android:name=".MainActivity">
+            android:name=".MainActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SignUpActivity"/>
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".FindPwActivity"/>
+        <activity android:name="DetectActivity"/>
+        <activity android:name=".PopupActivity"/>
+        <activity android:name=".PhotoActivity"/>
+        <activity android:name=".FindEmailActivity"/>
     </application>
 
-
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

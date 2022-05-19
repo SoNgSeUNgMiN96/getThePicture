@@ -1,4 +1,4 @@
-package com.example.a01_findyou;
+package com.example.getthepicture_2;
 
 import org.junit.Test;
 
