@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
@@ -48,6 +47,7 @@ public class PopupActivity extends AppCompatActivity {
     private String imageFilePath;
     private Uri photoUri;
     private Button btnCancel;
+    private Button imgList;
     private TextToSpeech tts;              // TTS 변수 선언
 
     private MediaScanner mMediaScanner; // 사진 저장 시 갤러리 폴더에 바로 반영사항을 업데이트 시켜주려면 이 것이 필요하다(미디어 스캐닝)
@@ -60,6 +60,7 @@ public class PopupActivity extends AppCompatActivity {
         // 사진 저장 후 미디어 스캐닝을 돌려줘야 갤러리에 반영됨.
         mMediaScanner = MediaScanner.getInstance(getApplicationContext());
         btnCancel = (Button)findViewById(R.id.btn_cancel);
+        imgList = (Button)findViewById(R.id.img_list);
 
         // TTS를 생성하고 OnInitListener로 초기화 한다.
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
@@ -106,6 +107,11 @@ public class PopupActivity extends AppCompatActivity {
         btnCancel.setOnClickListener(v-> {
             tts.speak("취소합니다. ",TextToSpeech.QUEUE_FLUSH, null);
             startActivity(new Intent(PopupActivity.this, DetectMenuActivity.class));
+        });
+
+        imgList.setOnClickListener(v-> {
+            tts.speak("이미지 목록으로 이동합니다. ",TextToSpeech.QUEUE_FLUSH, null);
+            startActivity(new Intent(PopupActivity.this, ImgListActivity.class));
         });
 
     }

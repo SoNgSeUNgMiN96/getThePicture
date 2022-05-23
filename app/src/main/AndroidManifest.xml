@@ -50,7 +50,8 @@
         <activity android:name=".FindpwActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".PopupActivity" />
-        <activity android:name=".SigninActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".ImgListActivity" />
 
         <provider
             android:authorities="org.tensorflow.lite.examples.detection"

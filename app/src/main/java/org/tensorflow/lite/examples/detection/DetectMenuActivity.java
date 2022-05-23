@@ -114,8 +114,6 @@ public class DetectMenuActivity extends AppCompatActivity {
 
 
 
-
-
     private RecognitionListener listener = new RecognitionListener() {
 
         HashMap<String,String> labelDic = new HashMap<String,String>(){
@@ -206,7 +204,7 @@ public class DetectMenuActivity extends AppCompatActivity {
         @Override
         public void onResults(Bundle results) {
             // 말을 하면 ArrayList에 단어를 넣고 textView에 단어를 이어줍니다.
-            //인식 결과가 준비되면 호출
+            //인과가 준비되면 호출식 결
             ArrayList<String> matches =
                     results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 

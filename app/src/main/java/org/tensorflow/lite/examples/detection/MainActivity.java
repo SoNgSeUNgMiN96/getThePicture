@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 tts.speak("회원가입 화면으로 이동합니다.",TextToSpeech.QUEUE_FLUSH, null);
-                Intent intent=new Intent(MainActivity.this, SigninActivity.class);
+                Intent intent=new Intent(MainActivity.this, SignUpActivity.class);
                 startActivity((intent));
             }
         });
