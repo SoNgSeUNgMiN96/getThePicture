@@ -157,7 +157,6 @@ public class MultiBoxTracker {
 
       borderedText.drawText(
           canvas, trackedPos.left + cornerSize, trackedPos.top, labelString + "%", boxPaint, context);
-
     }
     return text;
   }

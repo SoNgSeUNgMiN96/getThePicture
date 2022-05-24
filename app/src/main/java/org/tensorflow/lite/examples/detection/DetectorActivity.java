@@ -205,49 +205,64 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                             before = now;
                             objectInfo = text.split(" ");
                             findObj = getIntent().getStringExtra("obj");
-                            Boolean success= false;
-                            decodeObj = labelDicReverse.get(findObj);
 
-                            for (int i = 0; i < objectInfo.length; i++) {
-                                temp = objectInfo[i].split("x=");
-                                objName = temp[0];
+                            if(findObj==null){      //이건 그냥 일반 실행모드 화면상의 오브젝트들을 읽어준다.
+                                String objNameList="";
 
-                                //띄어쓰기된 물건을 찾을 때 문제
-                                Toast.makeText(getApplicationContext(),"찾을 물건 = "+findObj+"지금 물건 = "+objName,Toast.LENGTH_LONG).show();
+                                for (int i = 0; i < objectInfo.length; i++) {
+                                    objNameList += objectInfo[i].split("x=")[0]+" ";
+                                }
 
-                                if(objName.equals(findObj)){
-                                    success = true;
-                                    temp = temp[1].split("y=");
-                                                                        x = Double.parseDouble(temp[0]);
-                                    y = Double.parseDouble(temp[1]);
-                                    if(x<canvas.getWidth()/3){      //좌측 영역
-                                        if(y<canvas.getHeight()/3){     //좌상단 영역
-                                            tts.speak("좌측 상단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
-                                        }else if(y<canvas.getHeight()*2/3){ //좌중앙
-                                            tts.speak("좌측에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
-                                        }else{      //좌하단
-                                            tts.speak("좌측 하단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
-                                        }
-                                    }else if(x<canvas.getWidth()*2/3){      //중앙 영역
-                                        if(y<canvas.getHeight()/3){     //좌상단 영역
-                                            tts.speak("상단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
-                                        }else if(y<canvas.getHeight()*2/3){ //좌중앙
-                                            tts.speak("현재 중앙에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
-                                        }else{      //좌하단
-                                            tts.speak("하단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
-                                        }
-                                    }else{
-                                        if(y<canvas.getHeight()/3){     //좌상단 영역
-                                            tts.speak("우측 상단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
-                                        }else if(y<canvas.getHeight()*2/3){ //좌중앙
-                                            tts.speak("우측에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
-                                        }else{      //좌하단
-                                            tts.speak("우측 하단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                tts.speak("화면에 "+objNameList+"있습니다.",TextToSpeech.QUEUE_FLUSH,null);
+                                Toast.makeText(getApplicationContext(),"화면에 "+objNameList+"있습니다.",Toast.LENGTH_LONG).show();
+
+
+                            }else{      //특정 물건을 검색해서 찾는 모드.
+
+                                Boolean success= false;
+                                decodeObj = labelDicReverse.get(findObj);
+
+                                for (int i = 0; i < objectInfo.length; i++) {
+                                    temp = objectInfo[i].split("x=");
+                                    objName = temp[0];
+
+                                    //띄어쓰기된 물건을 찾을 때 문제
+                                    Toast.makeText(getApplicationContext(),"찾을 물건 = "+findObj+"지금 물건 = "+objName,Toast.LENGTH_LONG).show();
+
+                                    if(objName.equals(findObj)){
+                                        success = true;
+                                        temp = temp[1].split("y=");
+                                        x = Double.parseDouble(temp[0]);
+                                        y = Double.parseDouble(temp[1]);
+                                        if(x<canvas.getWidth()/3){      //좌측 영역
+                                            if(y<canvas.getHeight()/3){     //좌상단 영역
+                                                tts.speak("좌측 상단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                            }else if(y<canvas.getHeight()*2/3){ //좌중앙
+                                                tts.speak("좌측에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                            }else{      //좌하단
+                                                tts.speak("좌측 하단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                            }
+                                        }else if(x<canvas.getWidth()*2/3){      //중앙 영역
+                                            if(y<canvas.getHeight()/3){     //좌상단 영역
+                                                tts.speak("상단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                            }else if(y<canvas.getHeight()*2/3){ //좌중앙
+                                                tts.speak("현재 중앙에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                            }else{      //좌하단
+                                                tts.speak("하단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                            }
+                                        }else{
+                                            if(y<canvas.getHeight()/3){     //좌상단 영역
+                                                tts.speak("우측 상단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                            }else if(y<canvas.getHeight()*2/3){ //좌중앙
+                                                tts.speak("우측에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                            }else{      //좌하단
+                                                tts.speak("우측 하단에 "+decodeObj+" 있습니다.",TextToSpeech.QUEUE_FLUSH, null);
+                                            }
                                         }
                                     }
                                 }
+                                if(!success) tts.speak("화면에 "+decodeObj+" 없습니다.",TextToSpeech.QUEUE_FLUSH, null);       //일치하는 오브젝트가 없었을 경우.
                             }
-                            if(!success) tts.speak("화면에 "+decodeObj+" 없습니다.",TextToSpeech.QUEUE_FLUSH, null);
                         }
                     }
                 });
@@ -258,10 +273,6 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
     @Override
     protected void processImage() {
         // TTS를 생성하고 OnInitListener로 초기화 한다.
-
-
-
-        Toast.makeText(getApplicationContext(),"나오나",Toast.LENGTH_SHORT);
 
 
 
