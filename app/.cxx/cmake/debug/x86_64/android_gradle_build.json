@@ -1,0 +1,42 @@
+{
+  "stringTable": {
+    "0": "C:/Users/seungmin/Desktop/coding/tensorflow-yolov4-tflite/android/app/.cxx/cmake/debug/x86_64",
+    "1": "--target=x86_64-none-linux-android21 --gcc-toolchain=C:/ANDROID/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/ANDROID/ndk/21.4.7075529/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Ddetection_EXPORTS -IC:/Users/seungmin/Desktop/coding/tensorflow-yolov4-tflite/android/opencv/native/jni/include -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC"
+  },
+  "buildFiles": [
+    "C:\\ANDROID\\ndk\\21.4.7075529\\build\\cmake\\platforms.cmake",
+    "C:\\Users\\seungmin\\Desktop\\coding\\tensorflow-yolov4-tflite\\android\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\ANDROID\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake"
+  ],
+  "cleanCommands": [
+    "C:\\ANDROID\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\seungmin\\Desktop\\coding\\tensorflow-yolov4-tflite\\android\\app\\.cxx\\cmake\\debug\\x86_64\" clean"
+  ],
+  "buildTargetsCommand": "C:\\ANDROID\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\seungmin\\Desktop\\coding\\tensorflow-yolov4-tflite\\android\\app\\.cxx\\cmake\\debug\\x86_64\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "detection-Debug-x86_64": {
+      "buildCommand": "C:\\ANDROID\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\seungmin\\Desktop\\coding\\tensorflow-yolov4-tflite\\android\\app\\.cxx\\cmake\\debug\\x86_64\" detection",
+      "buildType": "debug",
+      "toolchain": "4081847044",
+      "abi": "x86_64",
+      "artifactName": "detection",
+      "files": [
+        {
+          "src": "C:\\Users\\seungmin\\Desktop\\coding\\tensorflow-yolov4-tflite\\android\\app\\src\\main\\cpp\\detection.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "C:\\Users\\seungmin\\Desktop\\coding\\tensorflow-yolov4-tflite\\android\\app\\build\\intermediates\\cmake\\debug\\obj\\x86_64\\libdetection.so"
+    }
+  },
+  "toolchains": {
+    "4081847044": {
+      "cppCompilerExecutable": "C:\\ANDROID\\ndk\\21.4.7075529\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}
