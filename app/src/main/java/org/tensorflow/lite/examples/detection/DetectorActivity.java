@@ -192,7 +192,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                         Double x,y;
                         String[] objectInfo, temp;
 
-                        text += tracker.draw(canvas,text,getApplicationContext());
+                        text = tracker.draw(canvas,text,getApplicationContext());
 
                         if (isDebug()) {
                             tracker.drawDebug(canvas, getApplicationContext());

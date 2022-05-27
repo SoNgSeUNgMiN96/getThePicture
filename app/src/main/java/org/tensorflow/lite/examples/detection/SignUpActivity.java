@@ -1,5 +1,6 @@
 package org.tensorflow.lite.examples.detection;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -97,6 +98,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // 회원가입 성공
                             Toast.makeText(SignUpActivity.this, R.string.success_signup, Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(SignUpActivity.this,MainActivity.class));
                         } else {
                             // 회원가입 실패
                             Toast.makeText(SignUpActivity.this, R.string.failed_signup, Toast.LENGTH_SHORT).show();

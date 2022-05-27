@@ -89,7 +89,10 @@ public class MyAdapter extends BaseAdapter {
                 }
             }
         });
-
         return view;
     }
+    public ArrayList<SampleData> getSampleList(){
+        return sample;
+    }
+
 }

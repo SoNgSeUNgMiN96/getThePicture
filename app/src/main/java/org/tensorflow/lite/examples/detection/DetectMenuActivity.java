@@ -108,18 +108,12 @@ public class DetectMenuActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
     private RecognitionListener listener = new RecognitionListener() {
 
         HashMap<String,String> labelDic = new HashMap<String,String>(){
             {
-                put("컵","cup");     //mouse
-                put("마우스","mouse");     //keyboard
+                put("컵","cup");
+                put("마우스","mouse");
                 put("키보드","keyboard");
                 put("휴대폰","cell phone");
                 put("스마트폰","cell phone");
@@ -127,8 +121,8 @@ public class DetectMenuActivity extends AppCompatActivity {
                 put("시계","clock");
                 put("책","book");
                 put("키보드","keyboard");
-                put("사람","person");     //mouse
-                put("인간","person");     //mouse
+                put("사람","person");
+                put("인간","person");
                 put("개","dog");
                 put("강아지","dog");
                 put("컴퓨터","laptop");
@@ -221,13 +215,12 @@ public class DetectMenuActivity extends AppCompatActivity {
                 startActivity(new Intent(DetectMenuActivity.this, ImageActivity.class));
             }else if((result.contains("찾아")||result.contains("찾기"))){
 
-
                 Intent detectIntent = new Intent(DetectMenuActivity.this, DetectorActivity.class);
                 try{
                     if(result.contains("찾아"))
-                        result = result.split(" ")[0];
+                        result = result.split(" 찾아")[0];
                     else{
-                        result = result.split(" ")[0];
+                        result = result.split(" 찾기")[0];
                     }
                     Toast.makeText(getApplicationContext(),labelDic.get(result),Toast.LENGTH_LONG).show();
                     if(labelDic.containsKey(result)){

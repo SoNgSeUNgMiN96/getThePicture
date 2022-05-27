@@ -47,7 +47,7 @@
         <activity android:name=".DetectMenuActivity" />
         <activity android:name=".ImageActivity" />
         <activity android:name=".DetectModeActivity" />
-        <activity android:name=".FindpwActivity" />
+        <activity android:name=".FindPwActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".PopupActivity" />
         <activity android:name=".SignUpActivity" />
