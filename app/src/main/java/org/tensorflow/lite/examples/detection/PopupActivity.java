@@ -176,8 +176,6 @@ public class PopupActivity extends AppCompatActivity {
                     String result = "";
                     String filename = editText.getText().toString();
 
-                    tts.speak(filename+"사진을 저장하였습니다.",TextToSpeech.QUEUE_FLUSH, null);
-
                     String strFolderName = Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES) + File.separator + "FINDU" + File.separator;
                     File file = new File(strFolderName);
                     if (!file.exists())
@@ -211,6 +209,7 @@ public class PopupActivity extends AppCompatActivity {
                         result = "File close Error";
                     }
 
+                    tts.speak(filename+"사진을 저장하였습니다.",TextToSpeech.QUEUE_FLUSH, null);
                     Toast.makeText(getApplicationContext(), "등록되었습니다.", Toast.LENGTH_SHORT).show(); //등록 이후는 다시 메뉴로 돌아간다.
                     Intent intent=new Intent(PopupActivity.this, DetectModeActivity.class);
                     startActivity((intent));

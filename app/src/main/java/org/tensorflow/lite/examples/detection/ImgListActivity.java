@@ -109,20 +109,11 @@ public class ImgListActivity extends AppCompatActivity {
         btn_read.setOnClickListener( v->readImgList());
 
 
-
-
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!hasPermissions(PERMISSIONS)) {
                 requestPermissions(PERMISSIONS, PERMISSIONS_REQUEST_CODE);
             }
         }
-
-
-
-
-
 
     }
 
@@ -357,8 +348,9 @@ public class ImgListActivity extends AppCompatActivity {
                     cursor++;
                 }
 
-                tts.speak("가장 유사한 이미지는 "+simiarImg+"이고 유사도는"+max, TextToSpeech.QUEUE_FLUSH, null);
+
                 if(max>0.4){
+
                     simiarData.getImg();
                     try {
                         File file = new File(simiarData.getImg());        //sampe에 넣어둔 이미지의 path를 기준으로 파일을 읽어들인다.
@@ -372,13 +364,15 @@ public class ImgListActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    tts.speak("가장 유사한 이미지"+simiarImg+"가 삭제되었습니다.", TextToSpeech.QUEUE_FLUSH, null);
+                }else{
+                    tts.speak("해당하는 이미지가 없습니다. 명칭을 다시 확인해주세요", TextToSpeech.QUEUE_FLUSH, null);
                 }
 
             }
             else {
                 tts.speak("적당한 명령어를 찾지 못했어요. 다시 시도해주세요.", TextToSpeech.QUEUE_FLUSH, null);
             }
-
         }
     };
 
