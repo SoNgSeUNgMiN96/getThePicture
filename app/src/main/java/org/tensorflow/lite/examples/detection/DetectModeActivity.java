@@ -199,13 +199,10 @@ public class DetectModeActivity extends AppCompatActivity {
 
             String result = voiceTextView.getText().toString();
 
-
-
             if(result.contains("내")&&result.contains("물건")&&(result.contains("찾아")||result.contains("찾기"))){
                 tts.speak("내 물건 찾기 화면으로 이동합니다.",TextToSpeech.QUEUE_FLUSH, null);
                 startActivity(new Intent(DetectModeActivity.this, ImageActivity.class));
             }else if((result.contains("찾아")||result.contains("찾기"))){
-
 
                 Intent detectIntent = new Intent(DetectModeActivity.this, DetectorActivity.class);
                 try{
@@ -235,11 +232,13 @@ public class DetectModeActivity extends AppCompatActivity {
             }else if(result.contains("물건")&&result.contains("등록")){
                 tts.speak("물건 등록 화면으로 이동합니다.",TextToSpeech.QUEUE_FLUSH, null);
                 startActivity(new Intent(DetectModeActivity.this, PopupActivity.class));
-            }else{
+            }else if((result.contains("사진")||result.contains("이미지"))&&(result.contains("목록")||result.contains("리스트"))){
+                tts.speak("이미지 목록 화면으로 이동합니다.",TextToSpeech.QUEUE_FLUSH, null);
+                startActivity(new Intent(DetectModeActivity.this, ImgListActivity.class));
+            }
+            else{
                 tts.speak("적당한 명령어를 찾지 못했어요. 다시 시도해주세요.",TextToSpeech.QUEUE_FLUSH, null);
             }
-
-
         }
 
         @Override
@@ -252,10 +251,4 @@ public class DetectModeActivity extends AppCompatActivity {
             //향후 이벤트를 추가하기 위해 예약
         }
     };
-
-
-
-
-
-
 }

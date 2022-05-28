@@ -243,6 +243,9 @@ public class DetectMenuActivity extends AppCompatActivity {
             }else if(result.contains("물건")&&result.contains("등록")){
                 tts.speak("물건 등록 화면으로 이동합니다.",TextToSpeech.QUEUE_FLUSH, null);
                 startActivity(new Intent(DetectMenuActivity.this, PopupActivity.class));
+            }else if((result.contains("사진")||result.contains("이미지"))&&(result.contains("목록")||result.contains("리스트"))){
+                tts.speak("이미지 목록 화면으로 이동합니다.",TextToSpeech.QUEUE_FLUSH, null);
+                startActivity(new Intent(DetectMenuActivity.this, ImgListActivity.class));
             }else{
                 tts.speak("적당한 명령어를 찾지 못했어요. 다시 시도해주세요.",TextToSpeech.QUEUE_FLUSH, null);
             }

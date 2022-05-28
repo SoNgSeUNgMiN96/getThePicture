@@ -55,8 +55,8 @@ public class MyAdapter extends BaseAdapter {
 
         View view = mLayoutInflater.inflate(R.layout.listview_custom, null);
 
-        ImageView imageView = (ImageView)view.findViewById(R.id.poster);
-        TextView movieName = (TextView)view.findViewById(R.id.movieName);
+        ImageView objectView = (ImageView)view.findViewById(R.id.object);
+        TextView imageName = (TextView)view.findViewById(R.id.image_name);
         Button delete = (Button) view.findViewById(R.id.delete_button);
 
 
@@ -64,7 +64,7 @@ public class MyAdapter extends BaseAdapter {
             File file = new File(sample.get(position).getImg());
 
             if(file.exists()) {      //이미지의 경로대로 파일을 읽어들여 이미지를 세팅한다.
-                imageView.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
+                objectView.setImageBitmap(BitmapFactory.decodeFile(file.getAbsolutePath()));
             }
         }
 
@@ -72,7 +72,7 @@ public class MyAdapter extends BaseAdapter {
             e.printStackTrace();
         }
 
-        movieName.setText(sample.get(position).getImgName());
+        imageName.setText(sample.get(position).getImgName());
 
         delete.setOnClickListener(new View.OnClickListener() {      //리스트 요소 내의 삭제 버튼
             @Override

@@ -59,7 +59,6 @@ public class ImageActivity extends AppCompatActivity {
         double avr;
         double minDist;
         int goodMatch;
-        double score;
         String filePath;
 
         public MatchInfo(double avr, double minDist, String filePath,int goodMatch) {
@@ -123,8 +122,6 @@ public class ImageActivity extends AppCompatActivity {
                 }
             }
         });
-
-
 
 
         setContentView(R.layout.activity_image);
@@ -191,7 +188,7 @@ public class ImageActivity extends AppCompatActivity {
             for (File file : files) {       //파일들을 선형 탐색 한다.
                 Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
                 orbFeatureUsingJNI(myBitmap,mDesImage);
-                double minDist=0, avr=0, score=0;
+                double minDist=0, avr=0;
                 int goodMatch=0;
                 String filePath="";
                 //줄 바꿈을 기준으로 문자열을 찢어준다.  temp[0] = "minDist = 값", temp[1] = "avr = 값", temp[2] = "gootMatches.size() = 값" , temp[3] = "match여부", 파일경로 = file.getAbsolutePath()
@@ -254,12 +251,10 @@ public class ImageActivity extends AppCompatActivity {
     }
 
 
-
     public void onPickButtonClicked(View view){
         Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(camera,0);
     }
-
 
     // permission
     static final int PERMISSIONS_REQUEST_CODE = 1000;
