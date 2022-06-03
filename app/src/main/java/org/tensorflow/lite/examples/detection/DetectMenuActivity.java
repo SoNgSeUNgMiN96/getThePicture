@@ -35,7 +35,6 @@ public class DetectMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detect);
-        Button logupbtn=(Button) findViewById(R.id.btn_signup);
         Button registerbtn=(Button) findViewById(R.id.btn_register);
         Button detectbtn=(Button) findViewById(R.id.btn_detect);
         Button voicebtn=(Button) findViewById(R.id.btn_voice);
@@ -60,14 +59,7 @@ public class DetectMenuActivity extends AppCompatActivity {
         });
 
 
-        logupbtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                tts.speak("로그인 화면으로 이동합니다.",TextToSpeech.QUEUE_FLUSH, null);
-                Intent intent=new Intent(DetectMenuActivity.this, MainActivity.class);
-                startActivity((intent));
-            }
-        });
+
 
 
         registerbtn.setOnClickListener(new View.OnClickListener(){

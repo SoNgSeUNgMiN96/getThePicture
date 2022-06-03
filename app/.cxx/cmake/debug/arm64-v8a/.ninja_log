@@ -1,3 +1,5 @@
 # ninja log v5
 0	2701	674547603	CMakeFiles/native-lib.dir/C_/Users/seungmin/Desktop/coding/tensorflow-yolov4-tflite/android/app/src/main/cpp/native-lib.cpp.o	cbe5f0c3aa319b14
 2705	2944	674547603	C:/Users/seungmin/Desktop/coding/getThePicture/getThePicture/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	b2f205aa1de82407
+7	3052	675677107	CMakeFiles/native-lib.dir/C_/Users/seungmin/Desktop/coding/tensorflow-yolov4-tflite/android/app/src/main/cpp/native-lib.cpp.o	cbe5f0c3aa319b14
+3052	3609	675677107	C:/Users/seungmin/Desktop/coding/getThePicture/getThePicture/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	b2f205aa1de82407

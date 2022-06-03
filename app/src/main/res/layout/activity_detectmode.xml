@@ -12,13 +12,6 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="로그인/회원가입"
-            android:textStyle="bold"
-            android:background="#00ff0000"/>
     </LinearLayout>
 
 

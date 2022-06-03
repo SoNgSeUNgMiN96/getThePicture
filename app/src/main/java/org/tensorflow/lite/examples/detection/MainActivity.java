@@ -12,13 +12,29 @@ import android.widget.Button;
 import static android.speech.tts.TextToSpeech.ERROR;
 import android.speech.tts.TextToSpeech;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private TextToSpeech tts;              // TTS 변수 선언
+    protected FirebaseAuth firebaseAuth;
+    //FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
+    FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // 활동을 초기화할 때 사용자가 현재 로그인되어 있는지 확인합니다.
+        if(user != null){
+            Intent intent=new Intent(MainActivity.this, MainActivity_2.class);
+            startActivity((intent));
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Button startbtn=(Button) findViewById(R.id.startbtn);
         Button signinbtn=(Button) findViewById(R.id.signinbtn);
         Button loginbtn=(Button) findViewById(R.id.loginbtn);
+
 
 
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {

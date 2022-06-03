@@ -1,19 +1,19 @@
 {
   "buildFiles": [
     "C:\\ANDROID\\ndk\\21.4.7075529\\build\\cmake\\platforms.cmake",
-    "C:\\Users\\seungmin\\Desktop\\coding\\tensorflow-yolov4-tflite\\android\\app\\src\\main\\cpp\\CMakeLists.txt",
+    "C:\\Users\\seungmin\\Desktop\\coding\\getThePicture\\getThePicture\\app\\src\\main\\cpp\\CMakeLists.txt",
     "C:\\ANDROID\\ndk\\21.4.7075529\\build\\cmake\\android.toolchain.cmake"
   ],
   "cleanCommands": [
-    "C:\\ANDROID\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\seungmin\\Desktop\\coding\\tensorflow-yolov4-tflite\\android\\app\\.cxx\\cmake\\debug\\x86_64\" clean"
+    "C:\\ANDROID\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\seungmin\\Desktop\\coding\\getThePicture\\getThePicture\\app\\.cxx\\cmake\\debug\\x86_64\" clean"
   ],
-  "buildTargetsCommand": "C:\\ANDROID\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\seungmin\\Desktop\\coding\\tensorflow-yolov4-tflite\\android\\app\\.cxx\\cmake\\debug\\x86_64\" {LIST_OF_TARGETS_TO_BUILD}",
+  "buildTargetsCommand": "C:\\ANDROID\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\seungmin\\Desktop\\coding\\getThePicture\\getThePicture\\app\\.cxx\\cmake\\debug\\x86_64\" {LIST_OF_TARGETS_TO_BUILD}",
   "libraries": {
-    "detection-Debug-x86_64": {
-      "artifactName": "detection",
-      "buildCommand": "C:\\ANDROID\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\seungmin\\Desktop\\coding\\tensorflow-yolov4-tflite\\android\\app\\.cxx\\cmake\\debug\\x86_64\" detection",
+    "native-lib-Debug-x86_64": {
+      "artifactName": "native-lib",
+      "buildCommand": "C:\\ANDROID\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\seungmin\\Desktop\\coding\\getThePicture\\getThePicture\\app\\.cxx\\cmake\\debug\\x86_64\" native-lib",
       "abi": "x86_64",
-      "output": "C:\\Users\\seungmin\\Desktop\\coding\\tensorflow-yolov4-tflite\\android\\app\\build\\intermediates\\cmake\\debug\\obj\\x86_64\\libdetection.so"
+      "output": "C:\\Users\\seungmin\\Desktop\\coding\\getThePicture\\getThePicture\\app\\build\\intermediates\\cmake\\debug\\obj\\x86_64\\libnative-lib.so"
     }
   }
 }
