@@ -52,6 +52,7 @@
         <activity android:name=".PopupActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ImgListActivity" />
+        <activity android:name=".MainActivity_2"/>
 
         <provider
             android:authorities="org.tensorflow.lite.examples.detection"

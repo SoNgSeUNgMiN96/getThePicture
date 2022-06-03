@@ -34,7 +34,6 @@ public class DetectModeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detectmode);
-        Button logupbtn=(Button) findViewById(R.id.btn_signup);
         Button detectbtn=(Button) findViewById(R.id.btn_detect);
         Button voicebtn=(Button) findViewById(R.id.btn_voice);
         Button myDetectBtn = (Button) findViewById(R.id.btn_my_detect);
@@ -58,14 +57,6 @@ public class DetectModeActivity extends AppCompatActivity {
             }
         });
 
-        logupbtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                tts.speak("로그인 화면으로 이동합니다.",TextToSpeech.QUEUE_FLUSH, null);
-                Intent intent=new Intent(DetectModeActivity.this, MainActivity.class);
-                startActivity((intent));
-            }
-        });
 
 
         voicebtn.setOnClickListener(v ->{

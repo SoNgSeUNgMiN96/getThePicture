@@ -34,6 +34,7 @@
             android:layout_width="330dp"
             android:layout_height="60dp"
             android:text="로그아웃"
+            android:onClick="logout"
             android:layout_gravity="center"
             android:background="@drawable/radius"
             android:backgroundTint="#696969"

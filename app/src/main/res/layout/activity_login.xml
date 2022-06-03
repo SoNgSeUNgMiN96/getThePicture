@@ -61,6 +61,7 @@
             android:drawableLeft="@drawable/ic_baseline_arrow_right_alt_24"
             android:drawableStart="@drawable/ic_baseline_arrow_right_alt_24"/>
 
+
         <Button
             android:id="@+id/email_forgot"
             android:layout_width="wrap_content"
@@ -70,6 +71,7 @@
             android:textSize="20dp"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"/>
+
         <Button
             android:id="@+id/pw_forgot"
             android:layout_width="wrap_content"
